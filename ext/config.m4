@@ -20,6 +20,7 @@ if test "$PHP_OAUTH2" = "yes"; then
 	oauth2/tokentype/tokentypeinterface.zep.c
 	oauth2/clientassertiontype/httpbasic.zep.c
 	oauth2/controller/authorizecontrollerinterface.zep.c
+	oauth2/encryption/encryptioninterface.zep.c
 	oauth2/responsetype/accesstokeninterface.zep.c
 	oauth2/responsetype/authorizationcodeinterface.zep.c
 	oauth2/scopeinterface.zep.c
@@ -28,7 +29,7 @@ if test "$PHP_OAUTH2" = "yes"; then
 	oauth2/autoloader.zep.c
 	oauth2/controller/resourcecontroller.zep.c
 	oauth2/controller/tokencontroller.zep.c
-	oauth2/encryption/encryptioninterface.zep.c
+	oauth2/encryption/jwt.zep.c
 	oauth2/exception.zep.c
 	oauth2/granttype/authorizationcode.zep.c
 	oauth2/granttype/clientcredentials.zep.c

@@ -16,8 +16,8 @@ if (PHP_OAUTH2 != "no") {
 	ADD_SOURCES(configure_module_dirname + "/oauth2/clientassertiontype", "clientassertiontypeinterface.zep.c httpbasic.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2/controller", "resourcecontrollerinterface.zep.c tokencontrollerinterface.zep.c authorizecontrollerinterface.zep.c resourcecontroller.zep.c tokencontroller.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2/tokentype", "tokentypeinterface.zep.c bearer.zep.c mac.zep.c", "oauth2");
+	ADD_SOURCES(configure_module_dirname + "/oauth2/encryption", "encryptioninterface.zep.c jwt.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2", "scopeinterface.zep.c autoloader.zep.c exception.zep.c requestinterface.zep.c responseinterface.zep.c scope.zep.c server.zep.c", "oauth2");
-	ADD_SOURCES(configure_module_dirname + "/oauth2/encryption", "encryptioninterface.zep.c", "oauth2");
   ADD_FLAG("CFLAGS_OAUTH2", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
   ADD_FLAG("CFLAGS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
   ADD_FLAG("LDFLAGS", "/LTCG");

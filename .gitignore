@@ -1,3 +1,7 @@
 compile.log
 compile-errors.log
 ext/oauth2/
+ext/.libs/
+ext/kernel/.libs/
+ext/modules/
+.temp
