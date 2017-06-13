@@ -26,7 +26,7 @@ interface ResourceControllerInterface
      * @param string scope
      * @return boolean
      */
-    public function verifyResourceRequest(<RequestInterface> request, <ResponseInterface> response, string! scope = null) -> boolean;
+    public function verifyResourceRequest(<RequestInterface> request, <ResponseInterface> response, string! scope = null) -> bool;
 
     /**
      * @param OAuth2\RequestInterface request - The current http request

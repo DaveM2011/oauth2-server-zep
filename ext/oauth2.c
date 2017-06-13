@@ -34,13 +34,13 @@ zend_class_entry *oauth2_storage_scopeinterface_ce;
 zend_class_entry *oauth2_tokentype_tokentypeinterface_ce;
 zend_class_entry *oauth2_controller_authorizecontrollerinterface_ce;
 zend_class_entry *oauth2_encryption_encryptioninterface_ce;
+zend_class_entry *oauth2_requestinterface_ce;
+zend_class_entry *oauth2_responseinterface_ce;
 zend_class_entry *oauth2_responsetype_accesstokeninterface_ce;
 zend_class_entry *oauth2_responsetype_authorizationcodeinterface_ce;
 zend_class_entry *oauth2_scopeinterface_ce;
 zend_class_entry *oauth2_storage_clientinterface_ce;
 zend_class_entry *oauth2_storage_jwtaccesstokeninterface_ce;
-zend_class_entry *oauth2_requestinterface_ce;
-zend_class_entry *oauth2_responseinterface_ce;
 zend_class_entry *oauth2_storage_authorizationcodeinterface_ce;
 zend_class_entry *oauth2_storage_clientcredentialsinterface_ce;
 zend_class_entry *oauth2_storage_jwtbearerinterface_ce;
@@ -58,6 +58,8 @@ zend_class_entry *oauth2_granttype_clientcredentials_ce;
 zend_class_entry *oauth2_granttype_jwtbearer_ce;
 zend_class_entry *oauth2_granttype_refreshtoken_ce;
 zend_class_entry *oauth2_granttype_usercredentials_ce;
+zend_class_entry *oauth2_request_ce;
+zend_class_entry *oauth2_response_ce;
 zend_class_entry *oauth2_responsetype_accesstoken_ce;
 zend_class_entry *oauth2_responsetype_authorizationcode_ce;
 zend_class_entry *oauth2_scope_ce;
@@ -87,13 +89,13 @@ static PHP_MINIT_FUNCTION(oauth2)
 	ZEPHIR_INIT(OAuth2_TokenType_TokenTypeInterface);
 	ZEPHIR_INIT(OAuth2_Controller_AuthorizeControllerInterface);
 	ZEPHIR_INIT(OAuth2_Encryption_EncryptionInterface);
+	ZEPHIR_INIT(OAuth2_RequestInterface);
+	ZEPHIR_INIT(OAuth2_ResponseInterface);
 	ZEPHIR_INIT(OAuth2_ResponseType_AccessTokenInterface);
 	ZEPHIR_INIT(OAuth2_ResponseType_AuthorizationCodeInterface);
 	ZEPHIR_INIT(OAuth2_ScopeInterface);
 	ZEPHIR_INIT(OAuth2_Storage_ClientInterface);
 	ZEPHIR_INIT(OAuth2_Storage_JwtAccessTokenInterface);
-	ZEPHIR_INIT(OAuth2_RequestInterface);
-	ZEPHIR_INIT(OAuth2_ResponseInterface);
 	ZEPHIR_INIT(OAuth2_Storage_AuthorizationCodeInterface);
 	ZEPHIR_INIT(OAuth2_Storage_ClientCredentialsInterface);
 	ZEPHIR_INIT(OAuth2_Storage_JwtBearerInterface);
@@ -111,6 +113,8 @@ static PHP_MINIT_FUNCTION(oauth2)
 	ZEPHIR_INIT(OAuth2_GrantType_JwtBearer);
 	ZEPHIR_INIT(OAuth2_GrantType_RefreshToken);
 	ZEPHIR_INIT(OAuth2_GrantType_UserCredentials);
+	ZEPHIR_INIT(OAuth2_Request);
+	ZEPHIR_INIT(OAuth2_Response);
 	ZEPHIR_INIT(OAuth2_ResponseType_AccessToken);
 	ZEPHIR_INIT(OAuth2_ResponseType_AuthorizationCode);
 	ZEPHIR_INIT(OAuth2_Scope);
@@ -175,6 +179,7 @@ static PHP_RINIT_FUNCTION(oauth2)
 	php_zephir_init_globals(oauth2_globals_ptr TSRMLS_CC);
 	zephir_initialize_memory(oauth2_globals_ptr TSRMLS_CC);
 
+	zephir_init_static_properties_OAuth2_Response(TSRMLS_C);
 
 	return SUCCESS;
 }
