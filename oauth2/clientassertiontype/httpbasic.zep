@@ -111,7 +111,7 @@ class HttpBasic implements ClientAssertionTypeInterface
 
         if isset this->config["allow_credentials_in_request_body"] {
             // Using POST for HttpBasic authorization is not recommended, but is supported by specification
-            if typeof $request->request("client_id") !== "null" {
+            if request->request("client_id", null) != null {
                 // client_secret can be null if the client"s password is an empty string
                 // @see http://tools.ietf.org/html/rfc6749#section-2.3.1
                 return [
@@ -123,7 +123,7 @@ class HttpBasic implements ClientAssertionTypeInterface
 
         if response {
             let message = isset this->config["allow_credentials_in_request_body"] ? " or body" : "";
-            response->setError(400, "invalid_client", "Client credentials were not found in the headers".$message);
+            response->setError(400, "invalid_client", "Client credentials were not found in the headers" . message);
         }
 
         return null;

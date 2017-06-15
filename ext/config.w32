@@ -12,9 +12,9 @@ if (PHP_OAUTH2 != "no") {
   
   ADD_SOURCES(configure_module_dirname + "/oauth2/storage", "storageinterface.zep.c accesstokeninterface.zep.c scopeinterface.zep.c clientinterface.zep.c jwtaccesstokeninterface.zep.c authorizationcodeinterface.zep.c clientcredentialsinterface.zep.c jwtaccesstoken.zep.c jwtbearerinterface.zep.c publickeyinterface.zep.c refreshtokeninterface.zep.c usercredentialsinterface.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2/granttype", "granttypeinterface.zep.c authorizationcode.zep.c clientcredentials.zep.c jwtbearer.zep.c refreshtoken.zep.c usercredentials.zep.c", "oauth2");
-	ADD_SOURCES(configure_module_dirname + "/oauth2/responsetype", "responsetypeinterface.zep.c accesstokeninterface.zep.c authorizationcodeinterface.zep.c accesstoken.zep.c authorizationcode.zep.c", "oauth2");
+	ADD_SOURCES(configure_module_dirname + "/oauth2/responsetype", "responsetypeinterface.zep.c accesstokeninterface.zep.c accesstoken.zep.c authorizationcodeinterface.zep.c authorizationcode.zep.c jwtaccesstoken.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2/clientassertiontype", "clientassertiontypeinterface.zep.c httpbasic.zep.c", "oauth2");
-	ADD_SOURCES(configure_module_dirname + "/oauth2/controller", "resourcecontrollerinterface.zep.c tokencontrollerinterface.zep.c authorizecontrollerinterface.zep.c resourcecontroller.zep.c tokencontroller.zep.c", "oauth2");
+	ADD_SOURCES(configure_module_dirname + "/oauth2/controller", "authorizecontrollerinterface.zep.c resourcecontrollerinterface.zep.c tokencontrollerinterface.zep.c authorizecontroller.zep.c resourcecontroller.zep.c tokencontroller.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2/tokentype", "tokentypeinterface.zep.c bearer.zep.c mac.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2/encryption", "encryptioninterface.zep.c jwt.zep.c", "oauth2");
 	ADD_SOURCES(configure_module_dirname + "/oauth2", "requestinterface.zep.c responseinterface.zep.c scopeinterface.zep.c autoloader.zep.c exception.zep.c request.zep.c response.zep.c scope.zep.c server.zep.c", "oauth2");

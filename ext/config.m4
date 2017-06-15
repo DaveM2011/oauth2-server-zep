@@ -13,22 +13,24 @@ if test "$PHP_OAUTH2" = "yes"; then
 	oauth2/granttype/granttypeinterface.zep.c
 	oauth2/responsetype/responsetypeinterface.zep.c
 	oauth2/clientassertiontype/clientassertiontypeinterface.zep.c
+	oauth2/controller/authorizecontrollerinterface.zep.c
 	oauth2/controller/resourcecontrollerinterface.zep.c
 	oauth2/controller/tokencontrollerinterface.zep.c
+	oauth2/responsetype/accesstokeninterface.zep.c
 	oauth2/storage/accesstokeninterface.zep.c
 	oauth2/storage/scopeinterface.zep.c
 	oauth2/tokentype/tokentypeinterface.zep.c
 	oauth2/clientassertiontype/httpbasic.zep.c
-	oauth2/controller/authorizecontrollerinterface.zep.c
 	oauth2/encryption/encryptioninterface.zep.c
 	oauth2/requestinterface.zep.c
 	oauth2/responseinterface.zep.c
-	oauth2/responsetype/accesstokeninterface.zep.c
+	oauth2/responsetype/accesstoken.zep.c
 	oauth2/responsetype/authorizationcodeinterface.zep.c
 	oauth2/scopeinterface.zep.c
 	oauth2/storage/clientinterface.zep.c
 	oauth2/storage/jwtaccesstokeninterface.zep.c
 	oauth2/autoloader.zep.c
+	oauth2/controller/authorizecontroller.zep.c
 	oauth2/controller/resourcecontroller.zep.c
 	oauth2/controller/tokencontroller.zep.c
 	oauth2/encryption/jwt.zep.c
@@ -40,8 +42,8 @@ if test "$PHP_OAUTH2" = "yes"; then
 	oauth2/granttype/usercredentials.zep.c
 	oauth2/request.zep.c
 	oauth2/response.zep.c
-	oauth2/responsetype/accesstoken.zep.c
 	oauth2/responsetype/authorizationcode.zep.c
+	oauth2/responsetype/jwtaccesstoken.zep.c
 	oauth2/scope.zep.c
 	oauth2/server.zep.c
 	oauth2/storage/authorizationcodeinterface.zep.c

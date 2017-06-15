@@ -1,0 +1,8 @@
+*:3000
+log stdout
+errors stdout
+root /media/ssd1/sites/platform-dev
+fastcgi / unix:///run/php/php7.0-fpm.sock php {
+	root /media/ssd1/sites/platform-dev
+	index index.php
+}

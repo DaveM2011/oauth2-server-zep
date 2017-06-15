@@ -127,7 +127,7 @@ class Request implements RequestInterface
      */
     public function getContent(asResource = false)
     {
-        if false == this->content || (true == asResource && null != this->content) {
+        if false === this->content || (true == asResource && null !== this->content) {
             throw new LogicException("getContent() can only be called once when using the resource return type.");
         }
 
@@ -230,13 +230,13 @@ class Request implements RequestInterface
 
         /** @var Request $request */
         let request = create_instance_params(get_called_class(), [_GET, _POST, [], _COOKIE, _FILES, _SERVER]);
-
+        
         let contentType = request->server("CONTENT_TYPE", "");
         let requestMethod = request->server("REQUEST_METHOD", "GET");
-        if 0 == strpos(contentType, "application/x-www-form-urlencoded") && in_array(strtoupper(requestMethod), ["PUT", "DELETE"]) {
+        if 0 === strpos(contentType, "application/x-www-form-urlencoded") && in_array(strtoupper(requestMethod), ["PUT", "DELETE"]) {
             parse_str(request->getContent(), data);
             let request->request = data;
-        } elseif 0 == strpos(contentType, "application/json") && in_array(strtoupper(requestMethod), ["POST", "PUT", "DELETE"]) {
+        } elseif 0 === strpos(contentType, "application/json") && in_array(strtoupper(requestMethod), ["POST", "PUT", "DELETE"]) {
             let data = json_decode(request->getContent(), true);
             let request->request = data;
         }

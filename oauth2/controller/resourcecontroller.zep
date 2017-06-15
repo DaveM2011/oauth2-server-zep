@@ -39,12 +39,12 @@ class ResourceController implements ResourceControllerInterface
 
     public function verifyResourceRequest(<RequestInterface> request, <ResponseInterface> response, string! scope = null) -> boolean
     {
-        var token;
+        var token = false;
 
         let token = this->getAccessTokenData(request, response);
-
+        
         // Check if we have token data
-        if typeof token == "null" {
+        if token == null {
             return false;
         }
 
@@ -70,15 +70,16 @@ class ResourceController implements ResourceControllerInterface
         // allow retrieval of the token
         let this->token = token;
 
-        return (bool) token;
+        return token;
     }
 
     public function getAccessTokenData(<RequestInterface> request, <ResponseInterface> response) -> array | null
     {
-        var token_param, token, authHeader, error, error_description;
+        var token_param, token, authHeader = "", error, error_description;
 
         // Get the token parameter
         let token_param = this->tokenType->getAccessTokenParameter(request, response);
+
         if token_param {
             // Get the stored token data (from the implementing subclass)
             // Check we have a well formed token
@@ -87,9 +88,9 @@ class ResourceController implements ResourceControllerInterface
 
             if !token {
                 response->setError(401, "invalid_token", "The access token provided is invalid");
-            } elseif (!isset token["expires"] || !isset token["client_id"]) {
-                response->setError(401, "malformed_token", "Malformed token (missing \"expires\")");
-            } elseif (isset token["expires"] && time() > token["expires"]) {
+            } elseif !isset token["expires"] || !isset token["client_id"] {
+                response->setError(401, "malformed_token", "Malformed token (missing 'expires')");
+            } elseif isset token["expires"] && time() > token["expires"] {
                 response->setError(401, "expired_token", "The access token provided has expired");
             } else {
                 return token;
@@ -103,6 +104,7 @@ class ResourceController implements ResourceControllerInterface
         );
 
         let error = response->getParameter("error");
+        
         if error {
             let authHeader = sprintf(
                 "%s, error=\"%s\"",

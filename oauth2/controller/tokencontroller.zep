@@ -25,7 +25,7 @@ class TokenController implements TokenControllerInterface
     {
         var grantType;
 
-        if typeof clientAssertionType == "null" {
+        if clientAssertionType == null {
             for grantType in grantTypes {
                 if !(grantType instanceof ClientAssertionTypeInterface) {
                     throw new \InvalidArgumentException("You must supply an instance of OAuth2\\ClientAssertionType\\ClientAssertionTypeInterface or only use grant types which implement OAuth2\\ClientAssertionType\\ClientAssertionTypeInterface");
@@ -84,7 +84,7 @@ class TokenController implements TokenControllerInterface
     {
         var grantTypeIdentifier, grantType, clientId, storedClientId,
             requestedScope, availableScope, clientScope, defaultScope;
-
+        
         if strtolower(request->server("REQUEST_METHOD")) != "post" {
             response->setError(405, "invalid_request", "The request method must be POST when requesting an access token", "#section-3.2");
             response->addHttpHeaders(["Allow": "POST"]);
@@ -101,7 +101,7 @@ class TokenController implements TokenControllerInterface
         if !isset this->grantTypes[grantTypeIdentifier] {
             // TODO: If this is an OAuth2 supported grant type that we have chosen
             // not to implement, throw a 501 Not Implemented instead
-            response->setError(400, "unsupported_grant_type", sprintf("Grant type \"%s\" not supported", grantTypeIdentifier));
+            response->setError(400, "unsupported_grant_type", sprintf("Grant type '%s' not supported", grantTypeIdentifier));
             return null;
         }
 
@@ -204,9 +204,10 @@ class TokenController implements TokenControllerInterface
      * @param identifier - string
      * a string passed in as "grant_type" in the response that will call this grantType
      */
-    public function addGrantType(<GrantTypeInterface> grantType, var identifier = null) -> void
+    public function addGrantType(<GrantTypeInterface> grantType, identifier = null) -> void
     {
-        if typeof identifier == "null" || is_numeric(identifier) {
+        //var_dump("addGrantType", grantType, identifier);
+        if identifier == null || is_numeric(identifier) {
             let identifier = grantType->getQuerystringIdentifier();
         }
 

@@ -204,11 +204,10 @@ abstract class Server implements ResourceControllerInterface,
         } else {
             let this->grantTypes[grantType->getQuerystringIdentifier()] = grantType;
         }
-
         // persist added grant type down to TokenController
-        if this->tokenController != null {
+        //if this->tokenController != null {
             this->getTokenController()->addGrantType(grantType);
-        }
+        //}
     }
 
     public function addResponseType(responseType, string! key = null) -> void
@@ -248,7 +247,7 @@ abstract class Server implements ResourceControllerInterface,
     public function getAuthorizeController() -> <AuthorizeControllerInterface>
     {
         if typeof this->authorizeController == "null" {
-            let this->authorizeController = this->{"createDefaultAuthorizeController"}();
+            let this->authorizeController = this->createDefaultAuthorizeController();
         }
         return this->authorizeController;
     }
@@ -260,8 +259,8 @@ abstract class Server implements ResourceControllerInterface,
 
     public function getTokenController() -> <TokenControllerInterface>
     {
-        if typeof this->tokenController == "null" {
-            let this->tokenController = this->{"createDefaultTokenController"}();
+        if this->tokenController == null {
+            let this->tokenController = this->createDefaultTokenController();
         }
         return this->tokenController;
     }
@@ -279,8 +278,6 @@ abstract class Server implements ResourceControllerInterface,
         return this->resourceController;
     }
 
-
-
     protected function normalizeResponseType(string! name) -> string
     {
         var types;
@@ -294,4 +291,300 @@ abstract class Server implements ResourceControllerInterface,
 
         return name;
     }
+
+    protected function createDefaultAuthorizeController()
+    {
+        if !isset this->storages["client"] {
+            throw new \LogicException("You must supply a storage object implementing \OAuth2\Storage\ClientInterface to use the authorize server");
+        }
+        if 0 == count(this->responseTypes) {
+            let this->responseTypes = this->getDefaultResponseTypes();
+        }
+        if this->config["use_openid_connect"] && !isset this->responseTypes["id_token"] {
+            let this->responseTypes["id_token"] = this->createDefaultIdTokenResponseType();
+            if this->config["allow_implicit"] {
+                let this->responseTypes["id_token token"] = this->createDefaultIdTokenTokenResponseType();
+            }
+        }
+        var config;
+        let config = array_intersect_key(this->config, array_flip(explode(" ", "allow_implicit enforce_state require_exact_redirect_uri")));
+
+        if this->config["use_openid_connect"] {
+            return new OpenIDAuthorizeController(this->storages["client"], this->responseTypes, config, this->getScopeUtil());
+        }
+
+        return new AuthorizeController(this->storages["client"], this->responseTypes, config, this->getScopeUtil());
+    }
+
+    protected function createDefaultTokenController()
+    {
+        if 0 == count(this->grantTypes) {
+            let this->grantTypes = this->getDefaultGrantTypes();
+        }
+
+        if is_null(this->clientAssertionType) {
+            var grantType, config;
+            // see if HttpBasic assertion type is requred.  If so, then create it from storage classes.
+            for grantType in this->grantTypes {
+                if !(grantType instanceof ClientAssertionTypeInterface) {
+                    if !isset this->storages["client_credentials"] {
+                        throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\ClientCredentialsInterface to use the token server");
+                    }
+                    let config = array_intersect_key(this->config, array_flip(explode(" ", "allow_credentials_in_request_body allow_public_clients")));
+                    let this->clientAssertionType = new HttpBasic(this->storages["client_credentials"], config);
+                    break;
+                }
+            }
+        }
+
+        if !isset this->storages["client"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\ClientInterface to use the token server");
+        }
+        var accessTokenResponseType;
+        let accessTokenResponseType = this->getAccessTokenResponseType();
+
+        return new TokenController(accessTokenResponseType, this->storages["client"], this->grantTypes, this->clientAssertionType, this->getScopeUtil());
+    }
+
+    protected function getDefaultResponseTypes()
+    {
+        var responseTypes = [];
+
+        if this->config["allow_implicit"] {
+            let responseTypes["token"] = this->getAccessTokenResponseType();
+        }
+
+        if this->config["use_openid_connect"] {
+            let responseTypes["id_token"] = this->getIdTokenResponseType();
+            if this->config["allow_implicit"] {
+                let responseTypes["id_token token"] = this->getIdTokenTokenResponseType();
+            }
+        }
+
+        if isset this->storages["authorization_code"] {
+            var config;
+            let config = array_intersect_key(this->config, array_flip(explode(" ", "enforce_redirect auth_code_lifetime")));
+            if this->config["use_openid_connect"] {
+                if !(this->storages["authorization_code"] instanceof OpenIDAuthorizationCodeInterface) {
+                    throw new \LogicException("Your authorization_code storage must implement OAuth2\OpenID\Storage\AuthorizationCodeInterface to work when 'use_openid_connect' is true");
+                }
+                let responseTypes["code"] = new OpenIDAuthorizationCodeResponseType(this->storages["authorization_code"], config);
+                let responseTypes["code id_token"] = new CodeIdToken(responseTypes["code"], responseTypes["id_token"]);
+            } else {
+                let responseTypes["code"] = new AuthorizationCodeResponseType(this->storages["authorization_code"], config);
+            }
+        }
+
+        if count(responseTypes) == 0 {
+            throw new \LogicException("You must supply an array of response_types in the constructor or implement a OAuth2\Storage\AuthorizationCodeInterface storage object or set 'allow_implicit' to true and implement a OAuth2\Storage\AccessTokenInterface storage object");
+        }
+
+        return responseTypes;
+    }
+
+    protected function createDefaultResourceController()
+    {
+        if this->config["use_jwt_access_tokens"] {
+            // overwrites access token storage with crypto token storage if "use_jwt_access_tokens" is set
+            if !isset this->storages["access_token"] || !(this->storages["access_token"] instanceof JwtAccessTokenInterface) {
+                let this->storages["access_token"] = this->createDefaultJwtAccessTokenStorage();
+            }
+        } elseif !isset this->storages["access_token"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\AccessTokenInterface or use JwtAccessTokens to use the resource server");
+        }
+
+        if !this->tokenType {
+            let this->tokenType = this->getDefaultTokenType();
+        }
+
+        var config;
+        let config = array_intersect_key(this->config, ["www_realm": ""]);
+
+        return new ResourceController(this->tokenType, this->storages["access_token"], config, this->getScopeUtil());
+    }
+
+    protected function createDefaultUserInfoController()
+    {
+        if this->config["use_jwt_access_tokens"] {
+            // overwrites access token storage with crypto token storage if "use_jwt_access_tokens" is set
+            if !isset this->storages["access_token"] || !(this->storages["access_token"] instanceof JwtAccessTokenInterface) {
+                let this->storages["access_token"] = this->createDefaultJwtAccessTokenStorage();
+            }
+        } elseif !isset this->storages["access_token"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\AccessTokenInterface or use JwtAccessTokens to use the UserInfo server");
+        }
+
+        if !isset this->storages["user_claims"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\OpenID\Storage\UserClaimsInterface to use the UserInfo server");
+        }
+
+        if !this->tokenType {
+            let this->tokenType = this->getDefaultTokenType();
+        }
+
+        var config;
+        let config = array_intersect_key(this->config, ["www_realm": ""]);
+
+        return new UserInfoController(this->tokenType, this->storages["access_token"], this->storages["user_claims"], config, this->getScopeUtil());
+    }
+
+
+    protected function getDefaultGrantTypes()
+    {
+        var grantTypes = [], config;
+
+        if isset this->storages["user_credentials"] {
+            let grantTypes["password"] = new UserCredentials(this->storages["user_credentials"]);
+        }
+
+        if isset this->storages["client_credentials"] {
+            let config = array_intersect_key(this->config, ["allow_credentials_in_request_body": ""]);
+            let grantTypes["client_credentials"] = new ClientCredentials(this->storages["client_credentials"], config);
+        }
+
+        if isset this->storages["refresh_token"] {
+            let config = array_intersect_key(this->config, array_flip(explode(" ", "always_issue_new_refresh_token unset_refresh_token_after_use")));
+            let grantTypes["refresh_token"] = new RefreshToken(this->storages["refresh_token"], config);
+        }
+
+        if isset this->storages["authorization_code"] {
+            if this->config["use_openid_connect"] {
+                if !(this->storages["authorization_code"] instanceof OpenIDAuthorizationCodeInterface) {
+                    throw new \LogicException("Your authorization_code storage must implement OAuth2\OpenID\Storage\AuthorizationCodeInterface to work when 'use_openid_connect' is true");
+                }
+                let grantTypes["authorization_code"] = new OpenIDAuthorizationCodeGrantType(this->storages["authorization_code"]);
+            } else {
+                let grantTypes["authorization_code"] = new AuthorizationCode(this->storages["authorization_code"]);
+            }
+        }
+
+        if count(grantTypes) == 0 {
+            throw new \LogicException("Unable to build default grant types - You must supply an array of grant_types in the constructor");
+        }
+
+        return grantTypes;
+    }
+
+    protected function getAccessTokenResponseType()
+    {
+        if isset this->responseTypes["token"] {
+            return this->responseTypes["token"];
+        }
+
+        if this->config["use_jwt_access_tokens"] {
+            return this->createDefaultJwtAccessTokenResponseType();
+        }
+
+        return this->createDefaultAccessTokenResponseType();
+    }
+
+    protected function getIdTokenResponseType()
+    {
+        if isset this->responseTypes["id_token"] {
+            return this->responseTypes["id_token"];
+        }
+
+        return this->createDefaultIdTokenResponseType();
+    }
+
+    protected function getIdTokenTokenResponseType()
+    {
+        if isset this->responseTypes["id_token token"] {
+            return this->responseTypes["id_token token"];
+        }
+
+        return this->createDefaultIdTokenTokenResponseType();
+    }
+
+    public function getScopeUtil()
+    {
+        if !this->scopeUtil {
+            var storage;
+            let storage = isset this->storages["scope"] ? this->storages["scope"] : null;
+            let this->scopeUtil = new Scope(storage);
+        }
+        return this->scopeUtil;
+    }
+
+    protected function getDefaultTokenType()
+    {
+        var config;
+        let config = array_intersect_key(this->config, array_flip(explode(" ", "token_param_name token_bearer_header_name")));
+
+        return new Bearer(config);
+    }
+
+    protected function createDefaultJwtAccessTokenStorage()
+    {
+        if !isset this->storages["public_key"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\PublicKeyInterface to use crypto tokens");
+        }
+        var tokenStorage = null;
+        if !empty this->config["store_encrypted_token_string"] && isset this->storages["access_token"] {
+            let tokenStorage = this->storages["access_token"];
+        }
+        // wrap the access token storage as required.
+        return new JwtAccessTokenStorage(this->storages["public_key"], tokenStorage);
+    }
+
+    protected function createDefaultJwtAccessTokenResponseType()
+    {
+        if !isset this->storages["public_key"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\PublicKeyInterface to use crypto tokens");
+        }
+
+        var tokenStorage = null;
+        if isset this->storages["access_token"] {
+            let tokenStorage = this->storages["access_token"];
+        }
+
+        var refreshStorage = null;
+        if isset this->storages["refresh_token"] {
+            let refreshStorage = this->storages["refresh_token"];
+        }
+
+        var config;
+        let config = array_intersect_key(this->config, array_flip(explode(" ", "store_encrypted_token_string issuer access_lifetime refresh_token_lifetime")));
+
+        return new JwtAccessToken(this->storages["public_key"], tokenStorage, refreshStorage, config);
+    }
+
+    protected function createDefaultAccessTokenResponseType()
+    {
+        if !isset this->storages["access_token"] {
+            throw new \LogicException("You must supply a response type implementing OAuth2\ResponseType\AccessTokenInterface, or a storage object implementing OAuth2\Storage\AccessTokenInterface to use the token server");
+        }
+
+        var refreshStorage = null;
+        if isset this->storages["refresh_token"] {
+            let refreshStorage = this->storages["refresh_token"];
+        }
+        
+        var config;
+        let config = array_intersect_key(this->config, array_flip(explode(" ", "access_lifetime refresh_token_lifetime")));
+        let config["token_type"] = this->tokenType ? this->tokenType->getTokenType() :  this->getDefaultTokenType()->getTokenType();
+
+        return new AccessToken(this->storages["access_token"], refreshStorage, config);
+    }
+
+    protected function createDefaultIdTokenResponseType()
+    {
+        if !isset this->storages["user_claims"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\OpenID\Storage\UserClaimsInterface to use openid connect");
+        }
+        if !isset this->storages["public_key"] {
+            throw new \LogicException("You must supply a storage object implementing OAuth2\Storage\PublicKeyInterface to use openid connect");
+        }
+
+        var config;
+        let config = array_intersect_key(this->config, array_flip(explode(" ", "issuer id_lifetime")));
+
+        return new IdToken(this->storages["user_claims"], this->storages["public_key"], config);
+    }
+
+    protected function createDefaultIdTokenTokenResponseType()
+    {
+        return new IdTokenToken(this->getAccessTokenResponseType(), this->getIdTokenResponseType());
+    }
+
 }

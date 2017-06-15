@@ -39,9 +39,7 @@ class Bearer implements TokenTypeInterface
         let headers = request->headers("AUTHORIZATION");
 
         // check the header, then the querystring, then the request body
-        return !empty headers
-            || (boolean) (request->request(this->config["token_param_name"]))
-            || (boolean) (request->query(this->config["token_param_name"]));
+        return !empty headers || (boolean) (request->request(this->config["token_param_name"])) || (boolean) (request->query(this->config["token_param_name"]));
     }
 
     /**
@@ -77,12 +75,13 @@ class Bearer implements TokenTypeInterface
 
         // Ensure more than one method is not used for including an access token
         // @see http://tools.ietf.org/html/rfc6750#section-3.1
-        let methodsUsed = !empty headers + (bool) (request->query(this->config["token_param_name"])) + (bool) (request->request(this->config["token_param_name"]));
+        let methodsUsed = (int)(empty headers) + (bool) request->query(this->config["token_param_name"]) + (bool) request->request(this->config["token_param_name"]);
+        
         if methodsUsed > 1 {
             response->setError(400, "invalid_request", "Only one method may be used to authenticate at a time (Auth header, GET or POST)");
             return null;
         }
-
+        
         // If no authentication is provided, set the status code to 401 and return no other error information
         // @see http://tools.ietf.org/html/rfc6750#section-3.1
         if methodsUsed == 0 {
@@ -103,7 +102,7 @@ class Bearer implements TokenTypeInterface
 
         if request->request(this->config["token_param_name"]) {
             // POST: Get the token from POST data
-            if !in_array(strtolower(request->server("REQUEST_METHOD")), ["post", "put"]) {
+            if !in_array(request->server("REQUEST_METHOD"), ["POST", "PUT"]) {
                 response->setError(400, "invalid_request", "When putting the token in the body, the method must be POST or PUT", "#section-2.2");
                 return null;
             }

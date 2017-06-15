@@ -304,7 +304,7 @@ class Response implements ResponseInterface
      * @return mixed
      * @throws InvalidArgumentException
      */
-    public function setError(int statusCode, error, errorDescription = null, errorUri = null)
+    public function setError(int statusCode, error, errorDescription = null, string! errorUri = null)
     {
         var parameters = ["error": error, "error_description": errorDescription];
 

@@ -15,7 +15,7 @@ class Scope implements ScopeInterface
      * @param mixed storage
      * Either an array of supported scopes, or an instance of OAuth2\Storage\ScopeInterface
      */
-    public function __construct(<ScopeStorageInterface> storage)
+    public function __construct(<ScopeStorageInterface> storage = null)
     {
         if typeof storage != "object" {
             throw new \InvalidArgumentException("Argument 1 to OAuth2\\Scope must be null, an array, or instance of OAuth2\\Storage\\ScopeInterface");
