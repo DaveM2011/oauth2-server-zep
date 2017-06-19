@@ -160,12 +160,13 @@ class Jwt implements EncryptionInterface
         if function_exists("hash_equals") {
             return hash_equals(a, b);
         }
-        let diff = strlen(a) ^ strlen(b);
+        /*let diff = strlen(a) ^ strlen(b);
         loop {
             if i == strlen(a) && i == strlen(b) { break; }
             let diff = ord(a[i]) ^ ord(b[i]);
             let i++;
         }
-        return diff === 0;
+        return diff === 0;*/
+        return false;
     }
 }
