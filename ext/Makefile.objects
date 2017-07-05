@@ -1,0 +1,138 @@
+oauth2.lo: /data/oauth2-server-zep/ext/oauth2.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2.c -o oauth2.lo 
+kernel/main.lo: /data/oauth2-server-zep/ext/kernel/main.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/main.c -o kernel/main.lo 
+kernel/memory.lo: /data/oauth2-server-zep/ext/kernel/memory.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/memory.c -o kernel/memory.lo 
+kernel/exception.lo: /data/oauth2-server-zep/ext/kernel/exception.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/exception.c -o kernel/exception.lo 
+kernel/debug.lo: /data/oauth2-server-zep/ext/kernel/debug.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/debug.c -o kernel/debug.lo 
+kernel/backtrace.lo: /data/oauth2-server-zep/ext/kernel/backtrace.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/backtrace.c -o kernel/backtrace.lo 
+kernel/object.lo: /data/oauth2-server-zep/ext/kernel/object.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/object.c -o kernel/object.lo 
+kernel/array.lo: /data/oauth2-server-zep/ext/kernel/array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/array.c -o kernel/array.lo 
+kernel/string.lo: /data/oauth2-server-zep/ext/kernel/string.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/string.c -o kernel/string.lo 
+kernel/fcall.lo: /data/oauth2-server-zep/ext/kernel/fcall.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/fcall.c -o kernel/fcall.lo 
+kernel/require.lo: /data/oauth2-server-zep/ext/kernel/require.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/require.c -o kernel/require.lo 
+kernel/file.lo: /data/oauth2-server-zep/ext/kernel/file.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/file.c -o kernel/file.lo 
+kernel/operators.lo: /data/oauth2-server-zep/ext/kernel/operators.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/operators.c -o kernel/operators.lo 
+kernel/math.lo: /data/oauth2-server-zep/ext/kernel/math.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/math.c -o kernel/math.lo 
+kernel/concat.lo: /data/oauth2-server-zep/ext/kernel/concat.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/concat.c -o kernel/concat.lo 
+kernel/variables.lo: /data/oauth2-server-zep/ext/kernel/variables.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/variables.c -o kernel/variables.lo 
+kernel/filter.lo: /data/oauth2-server-zep/ext/kernel/filter.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/filter.c -o kernel/filter.lo 
+kernel/iterator.lo: /data/oauth2-server-zep/ext/kernel/iterator.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/iterator.c -o kernel/iterator.lo 
+kernel/time.lo: /data/oauth2-server-zep/ext/kernel/time.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/time.c -o kernel/time.lo 
+kernel/exit.lo: /data/oauth2-server-zep/ext/kernel/exit.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/kernel/exit.c -o kernel/exit.lo 
+oauth2/storage/storageinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/storageinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/storageinterface.zep.c -o oauth2/storage/storageinterface.lo 
+oauth2/granttype/granttypeinterface.lo: /data/oauth2-server-zep/ext/oauth2/granttype/granttypeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/granttype/granttypeinterface.zep.c -o oauth2/granttype/granttypeinterface.lo 
+oauth2/responsetype/responsetypeinterface.lo: /data/oauth2-server-zep/ext/oauth2/responsetype/responsetypeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responsetype/responsetypeinterface.zep.c -o oauth2/responsetype/responsetypeinterface.lo 
+oauth2/clientassertiontype/clientassertiontypeinterface.lo: /data/oauth2-server-zep/ext/oauth2/clientassertiontype/clientassertiontypeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/clientassertiontype/clientassertiontypeinterface.zep.c -o oauth2/clientassertiontype/clientassertiontypeinterface.lo 
+oauth2/controller/authorizecontrollerinterface.lo: /data/oauth2-server-zep/ext/oauth2/controller/authorizecontrollerinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/controller/authorizecontrollerinterface.zep.c -o oauth2/controller/authorizecontrollerinterface.lo 
+oauth2/controller/resourcecontrollerinterface.lo: /data/oauth2-server-zep/ext/oauth2/controller/resourcecontrollerinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/controller/resourcecontrollerinterface.zep.c -o oauth2/controller/resourcecontrollerinterface.lo 
+oauth2/controller/tokencontrollerinterface.lo: /data/oauth2-server-zep/ext/oauth2/controller/tokencontrollerinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/controller/tokencontrollerinterface.zep.c -o oauth2/controller/tokencontrollerinterface.lo 
+oauth2/responsetype/accesstokeninterface.lo: /data/oauth2-server-zep/ext/oauth2/responsetype/accesstokeninterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responsetype/accesstokeninterface.zep.c -o oauth2/responsetype/accesstokeninterface.lo 
+oauth2/storage/accesstokeninterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/accesstokeninterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/accesstokeninterface.zep.c -o oauth2/storage/accesstokeninterface.lo 
+oauth2/storage/scopeinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/scopeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/scopeinterface.zep.c -o oauth2/storage/scopeinterface.lo 
+oauth2/tokentype/tokentypeinterface.lo: /data/oauth2-server-zep/ext/oauth2/tokentype/tokentypeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/tokentype/tokentypeinterface.zep.c -o oauth2/tokentype/tokentypeinterface.lo 
+oauth2/clientassertiontype/httpbasic.lo: /data/oauth2-server-zep/ext/oauth2/clientassertiontype/httpbasic.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/clientassertiontype/httpbasic.zep.c -o oauth2/clientassertiontype/httpbasic.lo 
+oauth2/encryption/encryptioninterface.lo: /data/oauth2-server-zep/ext/oauth2/encryption/encryptioninterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/encryption/encryptioninterface.zep.c -o oauth2/encryption/encryptioninterface.lo 
+oauth2/requestinterface.lo: /data/oauth2-server-zep/ext/oauth2/requestinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/requestinterface.zep.c -o oauth2/requestinterface.lo 
+oauth2/responseinterface.lo: /data/oauth2-server-zep/ext/oauth2/responseinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responseinterface.zep.c -o oauth2/responseinterface.lo 
+oauth2/responsetype/accesstoken.lo: /data/oauth2-server-zep/ext/oauth2/responsetype/accesstoken.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responsetype/accesstoken.zep.c -o oauth2/responsetype/accesstoken.lo 
+oauth2/responsetype/authorizationcodeinterface.lo: /data/oauth2-server-zep/ext/oauth2/responsetype/authorizationcodeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responsetype/authorizationcodeinterface.zep.c -o oauth2/responsetype/authorizationcodeinterface.lo 
+oauth2/scopeinterface.lo: /data/oauth2-server-zep/ext/oauth2/scopeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/scopeinterface.zep.c -o oauth2/scopeinterface.lo 
+oauth2/storage/clientinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/clientinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/clientinterface.zep.c -o oauth2/storage/clientinterface.lo 
+oauth2/storage/jwtaccesstokeninterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/jwtaccesstokeninterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/jwtaccesstokeninterface.zep.c -o oauth2/storage/jwtaccesstokeninterface.lo 
+oauth2/autoloader.lo: /data/oauth2-server-zep/ext/oauth2/autoloader.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/autoloader.zep.c -o oauth2/autoloader.lo 
+oauth2/controller/authorizecontroller.lo: /data/oauth2-server-zep/ext/oauth2/controller/authorizecontroller.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/controller/authorizecontroller.zep.c -o oauth2/controller/authorizecontroller.lo 
+oauth2/controller/resourcecontroller.lo: /data/oauth2-server-zep/ext/oauth2/controller/resourcecontroller.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/controller/resourcecontroller.zep.c -o oauth2/controller/resourcecontroller.lo 
+oauth2/controller/tokencontroller.lo: /data/oauth2-server-zep/ext/oauth2/controller/tokencontroller.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/controller/tokencontroller.zep.c -o oauth2/controller/tokencontroller.lo 
+oauth2/encryption/jwt.lo: /data/oauth2-server-zep/ext/oauth2/encryption/jwt.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/encryption/jwt.zep.c -o oauth2/encryption/jwt.lo 
+oauth2/exception.lo: /data/oauth2-server-zep/ext/oauth2/exception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/exception.zep.c -o oauth2/exception.lo 
+oauth2/granttype/authorizationcode.lo: /data/oauth2-server-zep/ext/oauth2/granttype/authorizationcode.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/granttype/authorizationcode.zep.c -o oauth2/granttype/authorizationcode.lo 
+oauth2/granttype/clientcredentials.lo: /data/oauth2-server-zep/ext/oauth2/granttype/clientcredentials.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/granttype/clientcredentials.zep.c -o oauth2/granttype/clientcredentials.lo 
+oauth2/granttype/jwtbearer.lo: /data/oauth2-server-zep/ext/oauth2/granttype/jwtbearer.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/granttype/jwtbearer.zep.c -o oauth2/granttype/jwtbearer.lo 
+oauth2/granttype/refreshtoken.lo: /data/oauth2-server-zep/ext/oauth2/granttype/refreshtoken.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/granttype/refreshtoken.zep.c -o oauth2/granttype/refreshtoken.lo 
+oauth2/granttype/usercredentials.lo: /data/oauth2-server-zep/ext/oauth2/granttype/usercredentials.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/granttype/usercredentials.zep.c -o oauth2/granttype/usercredentials.lo 
+oauth2/request.lo: /data/oauth2-server-zep/ext/oauth2/request.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/request.zep.c -o oauth2/request.lo 
+oauth2/response.lo: /data/oauth2-server-zep/ext/oauth2/response.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/response.zep.c -o oauth2/response.lo 
+oauth2/responsetype/authorizationcode.lo: /data/oauth2-server-zep/ext/oauth2/responsetype/authorizationcode.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responsetype/authorizationcode.zep.c -o oauth2/responsetype/authorizationcode.lo 
+oauth2/responsetype/jwtaccesstoken.lo: /data/oauth2-server-zep/ext/oauth2/responsetype/jwtaccesstoken.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/responsetype/jwtaccesstoken.zep.c -o oauth2/responsetype/jwtaccesstoken.lo 
+oauth2/scope.lo: /data/oauth2-server-zep/ext/oauth2/scope.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/scope.zep.c -o oauth2/scope.lo 
+oauth2/server.lo: /data/oauth2-server-zep/ext/oauth2/server.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/server.zep.c -o oauth2/server.lo 
+oauth2/storage/authorizationcodeinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/authorizationcodeinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/authorizationcodeinterface.zep.c -o oauth2/storage/authorizationcodeinterface.lo 
+oauth2/storage/clientcredentialsinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/clientcredentialsinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/clientcredentialsinterface.zep.c -o oauth2/storage/clientcredentialsinterface.lo 
+oauth2/storage/jwtaccesstoken.lo: /data/oauth2-server-zep/ext/oauth2/storage/jwtaccesstoken.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/jwtaccesstoken.zep.c -o oauth2/storage/jwtaccesstoken.lo 
+oauth2/storage/jwtbearerinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/jwtbearerinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/jwtbearerinterface.zep.c -o oauth2/storage/jwtbearerinterface.lo 
+oauth2/storage/publickeyinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/publickeyinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/publickeyinterface.zep.c -o oauth2/storage/publickeyinterface.lo 
+oauth2/storage/refreshtokeninterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/refreshtokeninterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/refreshtokeninterface.zep.c -o oauth2/storage/refreshtokeninterface.lo 
+oauth2/storage/usercredentialsinterface.lo: /data/oauth2-server-zep/ext/oauth2/storage/usercredentialsinterface.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/storage/usercredentialsinterface.zep.c -o oauth2/storage/usercredentialsinterface.lo 
+oauth2/tokentype/bearer.lo: /data/oauth2-server-zep/ext/oauth2/tokentype/bearer.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/tokentype/bearer.zep.c -o oauth2/tokentype/bearer.lo 
+oauth2/tokentype/mac.lo: /data/oauth2-server-zep/ext/oauth2/tokentype/mac.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/data/oauth2-server-zep/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /data/oauth2-server-zep/ext/oauth2/tokentype/mac.zep.c -o oauth2/tokentype/mac.lo 
+$(phplibdir)/oauth2.la: ./oauth2.la
+	$(LIBTOOL) --mode=install cp ./oauth2.la $(phplibdir)
+
+./oauth2.la: $(shared_objects_oauth2) $(OAUTH2_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_oauth2) $(OAUTH2_SHARED_LIBADD)
+

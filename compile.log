@@ -1,0 +1,30 @@
+cp ./.libs/oauth2.so /data/oauth2-server-zep/ext/modules/oauth2.so
+cp ./.libs/oauth2.lai /data/oauth2-server-zep/ext/modules/oauth2.la
+PATH="$PATH:/sbin" ldconfig -n /data/oauth2-server-zep/ext/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /data/oauth2-server-zep/ext/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20160303/
+Installing header files:          /usr/local/include/php/

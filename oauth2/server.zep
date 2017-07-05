@@ -273,7 +273,7 @@ abstract class Server implements ResourceControllerInterface,
     public function getResourceController() -> <ResourceControllerInterface>
     {
         if typeof this->resourceController == "null" {
-            let this->resourceController = this->{"createDefaultResourceController"}();
+            let this->resourceController = this->createDefaultResourceController();
         }
         return this->resourceController;
     }

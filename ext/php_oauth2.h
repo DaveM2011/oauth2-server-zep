@@ -14,7 +14,7 @@
 #define PHP_OAUTH2_VERSION     "0.0.1"
 #define PHP_OAUTH2_EXTNAME     "oauth2"
 #define PHP_OAUTH2_AUTHOR      ""
-#define PHP_OAUTH2_ZEPVERSION  "0.9.7-edf9433136"
+#define PHP_OAUTH2_ZEPVERSION  "0.9.8-433d2cd249"
 #define PHP_OAUTH2_DESCRIPTION ""
 
 
